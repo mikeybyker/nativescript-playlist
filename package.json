@@ -3,9 +3,16 @@
   "version": "0.1.0",
   "description": "An example NativeScript iOS and Android app for creating and sharing a playlist, using the Last.fm API as a data source.",
   "keywords": [
-    "NativeScript"
+    "NativeScript",
+    "angular2",
+    "angular2js",
+    "Last.fm"
   ],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikeybyker/nativescript-playlist.git"
+  },
+  "author": "mikeybyker+github@gmail.com",
   "license": "MIT",
   "nativescript": {
     "id": "com.sinisterwaltz.nsplaylist",

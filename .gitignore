@@ -4,6 +4,7 @@ hooks/
 lib/
 node_modules/
 platforms/
+removed/
 tmp/
 typings/
 app/shared/config.ts

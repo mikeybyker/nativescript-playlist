@@ -1,0 +1,18 @@
+<ActionBar title="Your Playlist">
+    <ActionItem text="Share" (tap)="share()" android.systemIcon="ic_menu_share_holo_dark" ios.systemIcon="9" ios.position="right" android.position="actionBarIfRoom"></ActionItem>
+</ActionBar>
+<GridLayout columns="*" rows="*, 120" #container class="full-bg" (swipe)="onSwipe($event)">
+    <ListView [items]="playlist" row="0" col="0" [class.visible]="listLoaded">
+        <template let-item="item" let-i="index">
+            <GridLayout rows="35" columns="*, auto" class="add-bar">
+                <Label [text]="(i + 1) + '. ' + item.artistName + ' - ' + item.title" class="small-spacing"></Label>
+                <StackLayout col="1" (tap)="removeTrack(item)">
+                    <Image src="res://delete"></Image>
+                </StackLayout>
+            </GridLayout>
+        </template>
+    </ListView>
+    <Button text="Add Another" (tap)="viewSearch()" *ngIf="playlist.length < max_tracks" row="1" col="0"></Button>
+
+    <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'" col="0" row="0" horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
+</GridLayout>

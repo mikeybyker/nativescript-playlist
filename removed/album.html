@@ -1,0 +1,156 @@
+<!--<GridLayout rows="auto, *">
+  <Image row="10" [src]="album?.images?.mega"></Image>
+  <ListView [items]="album?.tracks?.track" row="1" class="small-spacing" [class.visible]="listLoaded">
+    <template let-item="item">            
+      <Label [text]="item.name" class="medium-spacing"></Label>
+    </template>
+  </ListView>
+  
+  <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'" row="1" horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
+</GridLayout>-->
+
+
+<!--<StackLayout orientation="vertical">
+    <Image [src]="album?.images?.mega"></Image>
+    <ListView [items]="album?.tracks?.track" class="small-spacing" [class.visible]="listLoaded">
+    <template let-item="item">            
+      <Label [text]="item.name" class="medium-spacing"></Label>
+    </template>
+  </ListView>
+  
+  <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'" horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
+
+</StackLayout>-->
+
+<!--<WrapLayout orientation="horizontal">
+    <Image [src]="album?.images?.mega"></Image>
+    <ListView [items]="album?.tracks?.track" class="small-spacing" [class.visible]="listLoaded">
+      <template let-item="item">            
+        aaa<Label [text]="item.name" class="medium-spacing"></Label>
+      </template>
+    </ListView>
+  
+  <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'" row="1" horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
+
+</WrapLayout>-->
+
+<!--(itemTap)="onItemTap($event)"-->
+
+<!--<ActionBar title="Groceries">
+  <ActionItem text="Share" (tap)="share()" android.systemIcon="ic_menu_share_holo_dark" ios.systemIcon="9" ios.position="right"></ActionItem>
+</ActionBar>
+
+<GridLayout rows="auto, *">
+  <GridLayout row="0" columns="auto,*" class="">
+    <Image [src]="album?.images?.mega" col="0"></Image>
+  </GridLayout>
+  <ListView [items]="album.tracks.track" row="1" class="small-spacing" [class.visible]="listLoaded">
+    <template let-item="item">
+      <StackLayout>
+          <Label text='AAAAA'></Label>
+      </StackLayout>
+    </template>
+  </ListView>
+  
+</GridLayout>-->
+
+<!--
+THIS IS THE WORKING ONE-->
+<!--<StackLayout orientation="vertical" #container>
+    <ListView [items]="anotherVar" width="75%" (itemTap)="onItemTap($event)">
+        <template let-item="item">
+            <Label [text]='item.name' class="medium-spacing test"></Label>
+        </template>
+    </ListView>
+</StackLayout>-->
+
+ <!--(itemTap)="onItemTap($event)"-->
+<StackLayout orientation="vertical" #container class="full-bg">
+    <ListView [items]="anotherVar" width="75%">
+        <template let-item="item">
+          <!--<StackLayout orientation="horizontal">
+              <Label [text]='item.name' width="90%" horizontalAlignment="stretch"></Label>
+              <Label text="X" width="10%" backgroundColor="yellow"></Label>
+          </StackLayout>-->
+          <GridLayout columns="*,50" rows="auto">
+            <Label [text]='item.name' col="0" row="0" class="list-spacing"></Label>
+            <!--<Label text="X" width="50" col="1" row="0" backgroundColor="blue"></Label>-->
+             <!--<Image src="res://add" width="50" col="1" row="0" class="medium-spacing" backgroundColor="blue"></Image>-->
+             <StackLayout width="50" col="1" row="0" class="add-container" (tap)="addTrack(item)">
+                  <Image src="res://add"></Image>
+            </StackLayout>
+          </GridLayout>
+        </template>
+    </ListView>
+</StackLayout>
+
+
+
+
+
+
+<!--<StackLayout #container class="stack-playlist">
+
+      <ListView [items]="anotherVar" width="75%" class="small-spacing add-bar" (itemTap)="onItemTap($event)">
+                  <template let-item="item">
+                        <GridLayout rows="35" columns="*, auto">                              
+                              <Label [text]="item.name" class="small-spacing"></Label>
+                              <StackLayout col="1" class="delete-container" (tap)="deleteTrack(item)">
+                                    <Image src="res://add"></Image>
+                              </StackLayout>
+                        </GridLayout>
+                  </template>
+      </ListView>
+
+</StackLayout>
+-->
+
+
+<!--
+                  <template let-item="item">
+                        <GridLayout rows="35" columns="*, auto">                              
+                              <Label [text]="item.artistName + ' - ' + item.title" class="small-spacing"></Label>
+                              <StackLayout col="1" class="delete-container" (tap)="deleteTrack(item)">
+                                    <Image src="res://delete"></Image>
+                              </StackLayout>
+                        </GridLayout>
+                  </template>
+                  -->
+
+<!--<StackLayout #container>
+      <ListView [items]="anotherVar">
+        <template let-item="item">
+            <Label [text]='item.name'></Label>
+        </template>
+      </ListView>
+</StackLayout>-->
+
+
+<!-- WORKS (not well, but works)
+<StackLayout orientation="vertical" backgroundColor="lightgray">
+    <Image [src]="album?.images?.mega" width="100%"></Image>
+    <ListView [items]="anotherVar" width="100%"  backgroundColor="lightgray">
+        <template let-item="item">
+            <Label [text]='item.name'></Label>
+        </template>
+    </ListView>
+</StackLayout>-->
+
+
+<!--<StackLayout orientation="vertical" width="100%" backgroundColor="lightgray">
+  
+  <Image [src]="album?.images?.mega"></Image>
+  <WrapLayout orientation="horizontal" width="100%" backgroundColor="red">
+    <ListView [items]="album.tracks.track" >
+        <template let-item="item">
+            <StackLayout>
+                <Label text='AAAAA'></Label>
+            </StackLayout>
+        </template>
+    </ListView>
+   </WrapLayout>
+
+  
+  <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'" horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
+
+</StackLayout>-->

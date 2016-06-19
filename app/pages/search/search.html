@@ -1,0 +1,16 @@
+<ActionBar title="Search for Artist">
+
+</ActionBar>
+<GridLayout columns="*" rows="auto, *" class="full-bg" (swipe)="onSwipe($event)">
+    <SearchBar #searchBar col="0" row="0" text="The Cure"></SearchBar>
+    <ListView [items]="potentials | results : 'extralarge'" col="0" row="1" [class.visible]="listLoaded" #searchlist id="search-list">
+        <template let-item="item">
+            <GridLayout columns="*, 85" rows="85" class="add-bar">
+                <Label col="0" [text]="item.name" class="artist" (tap)="selectArtist(item)"></Label>
+                <Image col="1" [src]="item.images.medium" stretch="aspectFit" class="album-image" (tap)="selectArtist(item)"></Image>
+            </GridLayout>
+        </template>
+    </ListView>
+
+    <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'" col="0" row="1" horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
+</GridLayout>

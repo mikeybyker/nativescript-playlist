@@ -1,0 +1,18 @@
+<ActionBar title="Your Playlist">
+    <ActionItem text="Share" (tap)="share()" android.systemIcon="ic_menu_share_holo_dark" ios.systemIcon="9" ios.position="right" android.position="actionBarIfRoom"></ActionItem>
+</ActionBar>
+
+<StackLayout #container class="full-bg" (swipe)="onSwipe($event)">
+    <ListView [items]="playlist" class="playlist">
+        <template let-item="item">
+            <GridLayout rows="35" columns="*, auto" class="add-bar">
+                <Label [text]="item.artistName + ' - ' + item.title" class="small-spacing"></Label>
+                <StackLayout col="1" class="delete-container" (tap)="removeTrack(item)">
+                    <Image src="res://delete"></Image>
+                </StackLayout>
+            </GridLayout>
+        </template>
+    </ListView>
+      <!--[disabled]="playlist.length >= 10" does not work -->
+    <Button text="Add Another" (tap)="viewSearch()" *ngIf="playlist.length < max_tracks" class="submit-button"></Button>
+</StackLayout>

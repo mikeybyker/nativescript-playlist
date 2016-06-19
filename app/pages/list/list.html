@@ -1,0 +1,19 @@
+<ActionBar title="Albums">
+</ActionBar>
+<GridLayout columns="*" rows="auto, *" class="full-bg" (swipe)="onSwipe($event)">
+    <StackLayout orientation="horizontal" class="add-bar">
+        <Label text="Sort by:"></Label>
+        <Label text="Playcount" [class.active]="currentSort===1" (tap)="sortBy(SORT_PLAYCOUNT)"></Label>
+        <Label text="Alphabetically" [class.active]="currentSort===2"  (tap)="sortBy(SORT_ALPHA)"></Label>
+    </StackLayout>
+    <ListView [items]="albums" col="0" row="1" [class.visible]="listLoaded" #albumlist id="album-list">
+        <template let-item="item">
+            <GridLayout columns="*, auto" class="add-bar">
+                <Label col="0" [text]="item.name" class="medium-spacing" (tap)="viewAlbum(item)"></Label>
+                <Image col="1" [src]="item.images.large" stretch="none" class="album-image" (tap)="viewAlbum(item)"></Image>
+            </GridLayout>
+        </template>
+    </ListView>
+
+    <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'" row="1" horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
+</GridLayout>

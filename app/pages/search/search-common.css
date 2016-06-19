@@ -1,0 +1,22 @@
+ListView
+{
+    opacity: 0;
+    width: 80%;
+    margin-top: 10;
+    margin-bottom: 10;
+}
+    ListView Image
+    {
+        padding: 0;
+    }
+.add-bar Image
+{
+    vertical-align: center;
+    margin-left: 0;
+    margin-right: 5;
+    margin-top: 5
+}
+.artist
+{
+	vertical-align: center;
+}

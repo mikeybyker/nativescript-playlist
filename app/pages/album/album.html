@@ -1,0 +1,17 @@
+<GridLayout columns="*" rows="auto" #container id="background" class="full-bg" (swipe)="onSwipe($event)">
+    <ListView [items]="albumTracks" row="0" width="75%" [class.visible]="listLoaded">
+        <template let-item="item">
+            <GridLayout columns="*,50" rows="auto">
+                <Label [text]='item.name' col="0" row="0"></Label>
+                <StackLayout *ngIf="!item.inPlaylist" width="50" col="1" row="0" (tap)="addTrack(item)">
+                    <Image src="res://add"></Image>
+                </StackLayout>
+                <StackLayout *ngIf="item.inPlaylist" width="50" col="1" row="0" class="add-container">
+                    <Image src="res://selected"></Image>
+                </StackLayout>
+            </GridLayout>
+        </template>
+    </ListView>
+
+    <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'" row="0" horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
+</GridLayout>

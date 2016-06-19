@@ -1,0 +1,57 @@
+@import url('~/platform.css');
+
+Page
+{
+    background-color: #363f45;
+    font-size: 15;
+}
+TextField
+{
+    padding: 10;
+    font-size: 13;
+}
+ActionBar
+{
+    background-color: #363f45;
+    color: white;
+}
+.small-spacing
+{
+    margin: 5;
+}
+.medium-spacing
+{
+    margin: 10;
+}
+.medium-top
+{
+    margin-top: 10;
+}
+.full-bg
+{
+    background-image: url('res://splashy');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.add-bar
+{
+    background-color: #D32F2F;
+    padding: 5 10;
+    color: white;
+}
+    .add-bar Image
+    {
+        vertical-align: center;
+        margin-left: 10;
+        margin-right: 5;
+    }
+.visible
+{
+    animation-name: show;
+    animation-duration: 1s;
+}
+@keyframes show
+{
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

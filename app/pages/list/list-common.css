@@ -1,0 +1,15 @@
+ListView
+{
+    opacity: 0;
+    width: 80%;
+    margin-top: 10;
+    margin-bottom: 20;
+}
+StackLayout Label
+{
+    margin: 10;
+}
+.active
+{
+    color: #000;
+}

@@ -1,0 +1,7 @@
+/* Add your API Key and rename config.ts */
+
+export class Config {
+    static apiEndpoint = 'http://ws.audioscrobbler.com/2.0/';
+    static api_key = 'YOUR_API_KEY';
+    static format = 'json';
+}

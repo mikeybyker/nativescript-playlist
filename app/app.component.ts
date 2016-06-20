@@ -24,6 +24,8 @@ import {UIMessage}                                  from './shared/utils/ui-mess
 ])
 export class AppComponent {}
 
+// Run
+// tns run android --emulator
 // Run and watch:
 // tns livesync android --emulator --watch
 

@@ -37,6 +37,8 @@ and/or
 tns platform add ios
 ```
 
+##### Add your [Last.FM](http://www.last.fm/api) API Key to **config.txt** and rename to **config.ts**
+
 ### Run
 ```javascript
 tns run android --emulator
@@ -48,8 +50,6 @@ tns livesync android --emulator --watch
 ```
 
 Or plug your phone in, and do the same commands without the --emulator flag.
-
-##### Add your [Last.FM](http://www.last.fm/api) API Key to **config.txt** and rename to **config.ts**
 
 ### Version
 0.1.0

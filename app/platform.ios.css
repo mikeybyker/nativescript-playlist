@@ -1,17 +1,17 @@
-TextField 
+TextField
 {
-  border-width: 1;
-  border-color: black;
+    border-width: 1;
+    border-color: black;
 }
-Page 
+Page
 {
-  margin-top: -20;
+    // margin-top: -20;
 }
-.add-bar 
+.add-bar
 {
-  margin-top: 20;
+    margin-top: 20;
 }
-Button 
+Button
 {
-  height: 40;
+    height: 40;
 }

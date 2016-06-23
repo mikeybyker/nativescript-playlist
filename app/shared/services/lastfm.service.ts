@@ -110,7 +110,7 @@ export class LastFmService {
             params: any = this.createParams(options, { method: 'artist.search', artist: artist });
         return this.http.get(Config.apiEndpoint, { search: params })
             .map(res => res.json())
-            .do(data => console.log(data))
+            // .do(data => console.log(data))
             .map(data => {
                 if (!data.results) {
                     return data;

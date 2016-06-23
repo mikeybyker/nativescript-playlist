@@ -1,6 +1,6 @@
 {
 	"name": "ns-playlist",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "An example NativeScript iOS and Android app for creating and sharing a playlist, using the Last.fm API as a data source.",
 	"keywords": [
 		"NativeScript",

@@ -9,7 +9,7 @@ An example [NativeScript](http://docs.nativescript.org/) iOS* and Android app fo
 ##### Note: Angular 2 is a release candidate - things can/will change...and they tend to break things. Take care with versions of Nativescript/NS angular too - they do not mix/match very well at the moment...
 Also note the tns command likes to write to package.json
 
-You'll need to install TypeScript... 
+You'll need to install TypeScript...
 ```javascript
 npm install -g typescript
 npm install -g typings
@@ -52,7 +52,7 @@ tns livesync android --emulator --watch
 Or plug your phone in, and do the same commands without the --emulator flag.
 
 ### Version
-0.1.0
+0.2.0
 
 Mike
 

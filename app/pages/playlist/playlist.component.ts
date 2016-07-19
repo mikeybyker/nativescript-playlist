@@ -1,5 +1,6 @@
 import {Component, OnInit}                          from '@angular/core';
-import {Router}                                     from '@angular/router-deprecated';
+// import {Router}                                     from '@angular/router-deprecated';
+import {Router}                                     from '@angular/router';
 import {Page}                                       from 'ui/page';
 import {View}                                       from 'ui/core/view';
 import {SwipeGestureEventData, GestureEventData}    from 'ui/gestures';
@@ -50,7 +51,7 @@ export class PlaylistPage  implements OnInit {
 
     public onSwipe(args: SwipeGestureEventData) {
         if (args.direction === 2 && this.playlist.length < this.max_tracks) {
-            this._router.navigate(['List']);
+            this._router.navigate(['/List']);
         }
     }
 
@@ -127,7 +128,11 @@ export class PlaylistPage  implements OnInit {
     }
 
     viewSearch(){
-        this._router.navigate(['Search']);
+        console.log('HERE I AM');
+        this._router.navigate(['/Search'])
+        .catch(function(e){
+            console.log('An ERROR! ', e);
+        });
     }
 
     share(){

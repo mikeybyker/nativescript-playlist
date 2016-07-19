@@ -1,5 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild, ChangeDetectionStrategy}      from "@angular/core";
-import {ROUTER_DIRECTIVES, Router}                                              from "@angular/router-deprecated";
+// import {ROUTER_DIRECTIVES, Router}                                              from "@angular/router-deprecated";
+import {Router}                                                                 from '@angular/router';
 import {Observable}                                                             from "rxjs/Rx";
 
 import {Page}                                                                   from "ui/page";
@@ -55,7 +56,7 @@ export class SearchPage implements OnInit {
         
     public onSwipe(args: SwipeGestureEventData) {
         if(args.direction === 1){
-          this._router.navigate(['Playlist']);
+          this._router.navigate(['/Playlist']);
         }     
     }
     
@@ -86,7 +87,7 @@ export class SearchPage implements OnInit {
     }
     selectArtist(item) {
         console.log('Select: ', item);
-        this._router.navigate(['List', {name:item.name}]);       
+        this._router.navigate(['/List', {name:item.name}]);       
     }
     // when using (submit)="search()" on the template...couldn't get the text out of it though!
     // search(o){

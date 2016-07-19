@@ -1,5 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild}   from '@angular/core';
-import {ROUTER_DIRECTIVES, Router, RouteParams}     from '@angular/router-deprecated';
+// import {ROUTER_DIRECTIVES, Router, RouteParams}     from '@angular/router-deprecated';
+import {Router, ActivatedRoute}                     from '@angular/router';
 import {Observable}                                 from 'rxjs/Rx';
 import {Page}                                       from 'ui/page';
 import {View}                                       from 'ui/core/view';
@@ -36,22 +37,42 @@ export class AlbumPage implements OnInit {
     albumTracks: Array<any>;
     maxAlbums: number = 12;
 
+    sub: any;
+
     @ViewChild('container') container: ElementRef;
 
-    constructor(private _lastFmService: LastFmService, private _router:Router, private _routeParams: RouteParams, private page: Page, private playlistService: PlaylistService, private _message:UIMessage) {
+    constructor(private _lastFmService: LastFmService, private _router:Router, private route: ActivatedRoute, private page: Page, private playlistService: PlaylistService, private _message:UIMessage) {
 
     }
 
     ngOnInit() {
         this.page.actionBarHidden = true;
         this.isLoading = true;
-        // this.artistName = this._routeParams.get('name');
-        this.mbid = this._routeParams.get('mbid');
-        if(!this.mbid){
-             this._message.showMessage('No id found...', {title:'No Search ID'});
-             return;
-        }
-        this.loadData(this.mbid);
+
+
+        this.sub = this.route.params.subscribe(params => {
+            this.mbid = params['mbid'];
+            if(!this.mbid){
+                 this._message.showMessage('No id found...', {title:'No Search ID'});
+                 return;
+            }
+
+
+            // CURE mbid = '69ee3720-a7cb-4402-b48d-a02c366f2bcf';
+            // limit: this.maxAlbums > lastfm often going a bit weird - any limit, returning 3...leave out for now!
+            this.loadData(this.mbid);
+        });  
+
+
+
+
+
+        // this.mbid = this._routeParams.get('mbid');
+        // if(!this.mbid){
+        //      this._message.showMessage('No id found...', {title:'No Search ID'});
+        //      return;
+        // }
+        // this.loadData(this.mbid);
     }
     loadData(mbid){
         Observable.forkJoin(
@@ -92,7 +113,7 @@ export class AlbumPage implements OnInit {
     public onSwipe(args: SwipeGestureEventData) {
         console.log(`Swipe Direction: ${args.direction}`);
         if(args.direction === 1){
-          this._router.navigate(['List']);
+          this._router.navigate(['/List']);
         }
     }
     addTrack(item) {

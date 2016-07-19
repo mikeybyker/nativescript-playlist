@@ -1,5 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild}                       from '@angular/core';
-import {Router, OnActivate, ComponentInstruction, RouteParams}          from '@angular/router-deprecated';
+// import {Router, OnActivate, ComponentInstruction, RouteParams}          from '@angular/router-deprecated';
+import {Router, ActivatedRoute}                                         from '@angular/router';
 import {View}                                                           from 'ui/core/view';
 import {ListView}                                                       from 'ui/list-view';
 import {Page}                                                           from 'ui/page';
@@ -16,13 +17,15 @@ import * as _                                                           from 'lo
     styleUrls: ['pages/list/list-common.css', 'pages/list/list.css'],
     providers: [LastFmService]
 })
-
-export class ListPage implements OnInit, OnActivate  {    
+// OnActivate
+export class ListPage implements OnInit  {    
     artistName: string;
     artist: Artist;
     // albums: ObservableArray<Album>; // pointless really...doesn't auto-update
     albums: Array<Album> = [];
     list:ListView;
+
+    sub: any;
     
     maxAlbums: number = 12;   
     SORT_PLAYCOUNT = 1;
@@ -31,12 +34,14 @@ export class ListPage implements OnInit, OnActivate  {
     currentSort = this.SORT_PLAYCOUNT;
     isLoading = false;
     listLoaded = false;
-  
-    constructor(private _lastFmService: LastFmService, private _router:Router, private _routeParams: RouteParams, private page:Page, private _message:UIMessage){      
+ 
+ // private _routeParams: RouteParams, 
+
+    constructor(private _lastFmService: LastFmService, private _router:Router, private route: ActivatedRoute, private page:Page, private _message:UIMessage){      
     }
-    routerOnActivate(nextInstruction: ComponentInstruction, prevInstruction: ComponentInstruction): any {
-        console.log('routerOnActivate', nextInstruction, prevInstruction);
-    }
+    // routerOnActivate(nextInstruction: ComponentInstruction, prevInstruction: ComponentInstruction): any {
+    //     console.log('routerOnActivate', nextInstruction, prevInstruction);
+    // }
     ngAfterViewInit() {
         // see: https://github.com/NativeScript/nativescript-angular/issues/188
         // No native view for List - so <ListView>this.albumlist.nativeElement won't work
@@ -46,23 +51,34 @@ export class ListPage implements OnInit, OnActivate  {
         // console.log('REFRESH ', this.list.refresh); // hurrah!
     }
 
-    ngOnInit() {    
-        this.artistName = this._routeParams.get('name');
-        if(!this.artistName){
-            this.artistName = 'The Cure';
-        } 
+    ngOnInit() {
         this.isLoading = true;
         
-        // CURE mbid = '69ee3720-a7cb-4402-b48d-a02c366f2bcf';
-        // limit: this.maxAlbums > lastfm often going a bit weird - any limit, returning 3...leave out for now!
-        this._lastFmService
-            .getAllArtist(this.artistName, {}, {})
-            .subscribe(data => {           
-                this.initData(data[0], data[1]);
-            },
-            error => {                  
-                this._message.showMessage(error, {title:'Error Loading Artist Data'});
-            });
+        this.sub = this.route.params.subscribe(params => {
+            this.artistName = params['name'];
+            if(!this.artistName){
+                this.artistName = 'The Cure';
+            }           
+
+            // CURE mbid = '69ee3720-a7cb-4402-b48d-a02c366f2bcf';
+            // limit: this.maxAlbums > lastfm often going a bit weird - any limit, returning 3...leave out for now!
+            this._lastFmService
+                .getAllArtist(this.artistName, {}, {})
+                .subscribe(data => {           
+                    this.initData(data[0], data[1]);
+                },
+                error => {                  
+                    this._message.showMessage(error, {title:'Error Loading Artist Data'});
+                });
+        });  
+
+        // this.artistName = this._routeParams.get('name');
+        // if(!this.artistName){
+        //     this.artistName = 'The Cure';
+        // } 
+        
+        
+
     }
     
     initData(artist, albums){
@@ -79,13 +95,13 @@ export class ListPage implements OnInit, OnActivate  {
     public onSwipe(args: SwipeGestureEventData) {
         // console.log(`Swipe Direction: ${args.direction}`);
         if(args.direction === 1){
-            this._router.navigate(['Playlist']);
+            this._router.navigate(['/Playlist']);
         }     
     }
     
     viewAlbum(album){
         if(album && album.mbid){
-            this._router.navigate(['Album', {name: album.artist.name, mbid: album.mbid}]);
+            this._router.navigate(['/Album', {name: album.artist.name, mbid: album.mbid}]);
         }        
     }
 

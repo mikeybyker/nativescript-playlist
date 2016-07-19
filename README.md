@@ -3,10 +3,10 @@
 An example [NativeScript](http://docs.nativescript.org/) iOS* and Android app for creating and sharing a playlist, using the [Last.fm](http://www.last.fm/) API as a data source.
 
 #### Made With
-  - [NativeScript with Angular](http://docs.nativescript.org/angular/) @0.1.6
-  - [Angular 2](https://angular.io/) @2.0.0-rc.1
+  - [NativeScript with Angular](http://docs.nativescript.org/angular/) @0.1.8
+  - [Angular 2](https://angular.io/) @2.0.0-rc.4
 
-##### Note: Angular 2 is a release candidate - things can/will change...and they tend to break things. Take care with versions of Nativescript/NS angular too - they do not mix/match very well at the moment...
+##### Note: Angular 2 is a release candidate - things can/will change...and when they do, they tend to break things. Take care with versions of Nativescript/NS angular too - they do not mix/match very well at the moment...
 Also note the tns command likes to write to package.json
 
 You'll need to install TypeScript...
@@ -52,7 +52,7 @@ tns livesync android --emulator --watch
 Or plug your phone in, and do the same commands without the --emulator flag.
 
 ### Version
-0.2.0
+0.3.0
 
 Mike
 

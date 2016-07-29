@@ -1,8 +1,7 @@
-import {Component, ElementRef, OnInit, ViewChild, ChangeDetectionStrategy}      from "@angular/core";
-// import {ROUTER_DIRECTIVES, Router}                                              from "@angular/router-deprecated";
+import {Component, ElementRef, OnInit, ViewChild,
+        ChangeDetectionStrategy, NgZone}                                        from "@angular/core";
 import {Router}                                                                 from '@angular/router';
 import {Observable}                                                             from "rxjs/Rx";
-
 import {Page}                                                                   from "ui/page";
 import {View }                                                                  from 'ui/core/view';
 import {SearchBar}                                                              from 'ui/search-bar';
@@ -18,14 +17,15 @@ import {UIMessage}                                                              
 import * as _                                                                   from 'lodash';
 import 'rxjs/add/observable/forkJoin';
 
+// Views not updating on callbacks... (hopefully this will get sorted, but until then...)
+// http://www.nativescriptsnacks.com/videos/2016/06/13/zoned-callbacks.html
+
 @Component({
     selector: 'search',
     templateUrl: 'pages/search/search.html',
     styleUrls: ['pages/search/search-common.css', 'pages/search/search.css'],
     providers: [LastFmService],
     pipes:[ResultsPipe]
-    // ,
-    // changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class SearchPage implements OnInit {
@@ -38,8 +38,9 @@ export class SearchPage implements OnInit {
     isLoading = false;
     listLoaded = false;
     albumTracks: Array<any>;
+    foo:string = 'Waiting...';
 
-    constructor(private _lastFmService: LastFmService, private _router:Router, private page: Page, private _message:UIMessage) {
+    constructor(private _lastFmService: LastFmService, private _router:Router, private page: Page, private _message:UIMessage, private zone:NgZone) {
 
     }
 
@@ -49,7 +50,11 @@ export class SearchPage implements OnInit {
             let searchString = (<SearchBar>args.object).text;
             if(searchString){
                 sb.dismissSoftInput();
-                this.doSearch(searchString.trim());
+                // this.doSearch(searchString.trim());
+                // Skip round view update issues...
+                this.zone.run(() => {
+                    this.doSearch(searchString.trim());
+                });
             }
         });
     }
@@ -59,12 +64,13 @@ export class SearchPage implements OnInit {
           this._router.navigate(['/Playlist']);
         }     
     }
-    
+
     doSearch(artist:string){
         this.isLoading = true;
         this._lastFmService.
             searchArtists(artist, { limit: this.maxResults })
             .subscribe(data => {
+                // console.log('DONE doSearch ::: ', data);
                 if (data.error || !data.length) {
                     this._message.showMessage(data.message || 'Nothing found...', {title:'No Results'});
                     this.potentials = [];
@@ -78,8 +84,10 @@ export class SearchPage implements OnInit {
                 this._message.showMessage(`Sorry, did not find anything ${error} - try again!`, {title:'Error Searching'});
             },
             ()=>{
-               this.isLoading = false; 
+               this.isLoading = false;
             });
+
+
     }
 
     ngOnInit() {

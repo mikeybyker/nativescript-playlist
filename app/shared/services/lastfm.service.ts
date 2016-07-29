@@ -30,9 +30,15 @@ export class LastFmService {
         }
         return params;
     }
-    private handleError(error: Response) {
+    private handleError(error: any) {
         console.error('handleError ::: ', error);
-        return Observable.throw(error.json().message || 'Server Error');
+        // return Observable.throw(error.json().message || 'Server Error');
+
+        let errMsg = (error.message) ? error.message :
+        error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+        console.error(errMsg); // log to console instead
+        return Observable.throw(errMsg);
+
     }
 
     /**
@@ -125,5 +131,10 @@ export class LastFmService {
                 return results;
             })
             .catch(this.handleError);
+    }
+
+    private extractData(res: Response) {
+        let body = res.json();
+        return body.data || { };
     }
 }

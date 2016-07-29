@@ -3,7 +3,7 @@
 </ActionBar>
 <GridLayout columns="*" rows="auto, *" class="full-bg" (swipe)="onSwipe($event)">
     <SearchBar #searchBar col="0" row="0" text="The Cure"></SearchBar>
-    <ListView [items]="potentials | results : 'extralarge'" col="0" row="1" [class.visible]="listLoaded" #searchlist id="search-list">
+    <ListView [items]="potentials" col="0" row="1" #searchlist id="search-list"  [class.visible]="listLoaded">
         <template let-item="item">
             <GridLayout columns="*, 85" rows="85" class="add-bar">
                 <Label col="0" [text]="item.name" class="artist" (tap)="selectArtist(item)"></Label>
@@ -11,6 +11,6 @@
             </GridLayout>
         </template>
     </ListView>
-
+    <!-- <Button col="0" row="1" (tap)="buttonTap()"></Button> -->
     <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'" col="0" row="1" horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
 </GridLayout>

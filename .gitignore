@@ -9,3 +9,4 @@ tmp/
 typings/
 app/shared/config.ts
 cleaner.bat
+info.txt

@@ -128,7 +128,6 @@ export class PlaylistPage  implements OnInit {
     }
 
     viewSearch(){
-        console.log('HERE I AM');
         this._router.navigate(['/Search'])
         .catch(function(e){
             console.log('An ERROR! ', e);

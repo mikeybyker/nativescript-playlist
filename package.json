@@ -35,13 +35,12 @@
     "@angular/router-deprecated": "2.0.0-rc.2",
     "@angular/router": "3.0.0-alpha.7",
     "lodash": "^4.13.1",
-    "nativescript-angular": "0.2.0",
+    "nativescript-angular": "0.2.1",
     "nativescript-orientation": "1.0.4",
     "nativescript-snackbar": "1.0.3",
     "nativescript-social-share": "1.2.0",
     "rxjs": "5.0.0-beta.6",
     "tns-core-modules": "2.1.0",
-
     "zone.js": "^0.6.12",
     "reflect-metadata": "^0.1.3"
   },

@@ -1,5 +1,4 @@
 import {Component, ElementRef, OnInit, ViewChild}   from '@angular/core';
-// import {ROUTER_DIRECTIVES, Router, RouteParams}     from '@angular/router-deprecated';
 import {Router, ActivatedRoute}                     from '@angular/router';
 import {Observable}                                 from 'rxjs/Rx';
 import {Page}                                       from 'ui/page';
@@ -113,7 +112,7 @@ export class AlbumPage implements OnInit {
     public onSwipe(args: SwipeGestureEventData) {
         console.log(`Swipe Direction: ${args.direction}`);
         if(args.direction === 1){
-          this._router.navigate(['/List']);
+          this._router.navigate(['/list']);
         }
     }
     addTrack(item) {

@@ -1,5 +1,4 @@
 import {Component, OnInit}                        from '@angular/core';
-// import {Router}                                   from '@angular/router-deprecated';
 import {Router}                                   from '@angular/router';
 import {Page}                                     from 'ui/page';
 import {View}                                     from 'ui/core/view';
@@ -27,7 +26,7 @@ export class HomePage implements OnInit{
 
     public onSwipe(args: SwipeGestureEventData) {
         if(args.direction === 2){
-            this._router.navigate(['/Playlist']);
+            this._router.navigate(['/playlist']);
         }
     }
 
@@ -61,9 +60,9 @@ export class HomePage implements OnInit{
     }
 
     viewPlaylist(){
-        this._router.navigate(['/Playlist']);
+        this._router.navigate(['/playlist']);
     }
     viewSearch(){
-        this._router.navigate(['/Search']);
+        this._router.navigate(['/search']);
     }
 }

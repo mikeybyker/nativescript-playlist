@@ -1,10 +1,10 @@
 import {Component, ElementRef, OnInit, ViewChild}                       from '@angular/core';
-// import {Router, OnActivate, ComponentInstruction, RouteParams}          from '@angular/router-deprecated';
 import {Router, ActivatedRoute}                                         from '@angular/router';
 import {View}                                                           from 'ui/core/view';
 import {ListView}                                                       from 'ui/list-view';
 import {Page}                                                           from 'ui/page';
 import {SwipeGestureEventData}                                          from 'ui/gestures';
+
 import {LastFmService}                                                  from '../../shared/services/lastfm.service';
 import {Album}                                                          from '../../shared/models/album';
 import {Artist}                                                         from '../../shared/models/artist';
@@ -95,13 +95,13 @@ export class ListPage implements OnInit  {
     public onSwipe(args: SwipeGestureEventData) {
         // console.log(`Swipe Direction: ${args.direction}`);
         if(args.direction === 1){
-            this._router.navigate(['/Playlist']);
+            this._router.navigate(['/playlist']);
         }     
     }
     
     viewAlbum(album){
         if(album && album.mbid){
-            this._router.navigate(['/Album', {name: album.artist.name, mbid: album.mbid}]);
+            this._router.navigate(['/album', {name: album.artist.name, mbid: album.mbid}]);
         }        
     }
 

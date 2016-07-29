@@ -6,6 +6,7 @@ import {Page}                                                                   
 import {View }                                                                  from 'ui/core/view';
 import {SearchBar}                                                              from 'ui/search-bar';
 import {SwipeGestureEventData}                                                  from 'ui/gestures';
+
 import {LastFmService}                                                          from '../../shared/services/lastfm.service';
 import {PlaylistService}                                                        from '../../shared/services/playlist.service';
 import {Artist}                                                                 from '../../shared/models/artist';
@@ -28,7 +29,7 @@ import 'rxjs/add/observable/forkJoin';
     pipes:[ResultsPipe]
 })
 
-export class SearchPage implements OnInit {
+export class SearchPage {
 
     potentials:Array<Artist>;
     maxResults: number = 6;
@@ -61,7 +62,7 @@ export class SearchPage implements OnInit {
         
     public onSwipe(args: SwipeGestureEventData) {
         if(args.direction === 1){
-          this._router.navigate(['/Playlist']);
+          this._router.navigate(['/playlist']);
         }     
     }
 
@@ -86,16 +87,14 @@ export class SearchPage implements OnInit {
             ()=>{
                this.isLoading = false;
             });
-
-
     }
 
-    ngOnInit() {
-        // this.page.actionBarHidden = true;
-    }
+    // ngOnInit() {
+    //     this.page.actionBarHidden = true;
+    // }
     selectArtist(item) {
         console.log('Select: ', item);
-        this._router.navigate(['/List', {name:item.name}]);       
+        this._router.navigate(['/list', {name:item.name}]);       
     }
     // when using (submit)="search()" on the template...couldn't get the text out of it though!
     // search(o){

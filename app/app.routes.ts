@@ -8,10 +8,10 @@ import {PlaylistPage}                        from './pages/playlist/playlist.com
 
 export const routes: RouterConfig = [
     { path: '',         component: HomePage },
-    { path: 'List',     component: ListPage },
-    { path: 'Search',   component: SearchPage },
-    { path: 'Album',    component: AlbumPage },
-    { path: 'Playlist', component: PlaylistPage }
+    { path: 'list',     component: ListPage },
+    { path: 'search',   component: SearchPage },
+    { path: 'album',    component: AlbumPage },
+    { path: 'playlist', component: PlaylistPage }
 ];
 
 export const APP_ROUTER_PROVIDERS = [
